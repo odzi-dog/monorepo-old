@@ -12,13 +12,8 @@ export class UsersService {
   // 
   // findUserAccount
   async findUserAccount(userId?: number, email?: string): Promise<User | undefined> {
-    const user = await this.userModel.findOne({ 
-      $or: [ 
-        userId ? { id: userId } : {}, 
-        email ? { email: email } : {},
-      ],
-    });
+    const user = await this.userModel.findOne({ email: email });
     
-    return (user?.id === userId || user?.email === email) ? user : undefined;
+    return (user?.id == userId || user?.email === email) ? user : undefined;
   }
 };
