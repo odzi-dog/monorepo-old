@@ -7,17 +7,14 @@ import { Document } from 'mongoose';
 export type AuthTokenDocument = AuthToken & Document;
 
 @Schema()
-@ObjectType()
 export class AuthToken {
   @Prop()
-  @Field(type => Int)
-  userId: number;
+  id: string;
 
   @Prop()
-  @Field(type => Int)
-  tokenId: number;
+  userId: string;
 
-  @Field(type => [Permission])
+  @Prop(type => [Permission])
   permissions?: [Permission]
 };
 

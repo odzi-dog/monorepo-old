@@ -11,7 +11,7 @@ export class User {
   @Field(type => Int)
   id: number;
 
-  @Prop()
+  @Prop({ unique: true })
   @Field({ nullable: false })
   email: string;
 }

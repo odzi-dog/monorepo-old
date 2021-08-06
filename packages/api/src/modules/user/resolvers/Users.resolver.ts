@@ -10,6 +10,6 @@ export class UsersResolver{
 
   @Query(returns => User)
   async user(@Args('id', { type: () => Int }) id: number) {
-    return this.service.findOneById(id);
+    return this.service.findUserAccount(id);
   };
 }

@@ -7,11 +7,10 @@ import {
   Body,
   Controller,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiBody } from '@nestjs/swagger';
 import { AuthService } from '../services';
 import { LoginGuard } from 'src/auth';
 import { AuthenticatedGuard } from 'src/auth';
-import * as passport from 'passport';
 
 @ApiTags('Auth')
 @Controller('auth')

@@ -7,10 +7,6 @@ type User {
   email: String!
 }
 
-type Permission {
-  permission: String!
-}
-
 type Query {
   user(id: Int!): User!
 }

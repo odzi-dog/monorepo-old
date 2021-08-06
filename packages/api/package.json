@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
+    "@nestjs/config": "^1.0.1",
     "@nestjs/core": "^8.0.0",
     "@nestjs/graphql": "^8.0.2",
     "@nestjs/jwt": "^8.0.0",
@@ -29,9 +30,12 @@
     "@nestjs/passport": "^8.0.1",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/swagger": "^5.0.9",
+    "@types/nodemailer": "^6.4.4",
     "apollo-server-express": "^2.25.2",
     "express-session": "^1.17.2",
+    "mailazy-node": "^0.1.0",
     "mongoose": "^5.13.5",
+    "nodemailer": "^6.6.3",
     "passport": "^0.4.1",
     "passport-http-bearer": "^1.0.1",
     "passport-jwt": "^4.0.0",
@@ -39,7 +43,9 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
-    "swagger-ui-express": "^4.1.6"
+    "swagger-ui-express": "^4.1.6",
+    "uuid4": "^2.0.2",
+    "uuidv4": "^6.2.11"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",

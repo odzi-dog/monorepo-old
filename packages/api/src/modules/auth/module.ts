@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserSchema, AuthTokenSchema } from '../../types/models';
+import { UserSchema, AuthTokenSchema, AuthCodeSchema } from '../../types/models';
+import { MailService } from '../mail/services';
 
 import { UsersModule } from '../user/module';
 
@@ -10,7 +11,6 @@ import * as controllers from './controllers';
 
 import { PassportModule } from '@nestjs/passport';  
 import { LocalStrategy } from 'src/auth';
-import { JwtStrategy } from 'src/auth';
 
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from '../../auth';
@@ -32,9 +32,13 @@ import { SessionSerializer } from 'src/auth';
       {
         name: 'token',
         schema: AuthTokenSchema,
+      },
+      {
+        name: 'authCode',
+        schema: AuthCodeSchema,
       }])
   ],
-  providers: [...Object.values(services), LocalStrategy, JwtStrategy, SessionSerializer],
+  providers: [...Object.values(services), LocalStrategy, SessionSerializer, MailService],
   controllers: [...Object.values(controllers)],
 })
 export class AuthModule {};
