@@ -16,21 +16,23 @@ export class AuthCodeService {
 
   // 
   // createAuthCode
-  async createAuthCode(user: User): Promise<AuthCode> {
+  async createAuthCode(user: User): Promise<Boolean> {
     const code = Math.floor(1000 + Math.random() * 9000);
     const authCode = new this.authCodeModel({ id: code, type: AuthCodeType.AUTH, userId: user.id });
     
     await this.sendAuthCodeToEmail(user.email, code.toString());
-    return await authCode.save();
+    await authCode.save();
+    return true;
   };
 
   // createRegisterCode
-  async createRegisterCode(email: string): Promise<AuthCode> {
+  async createRegisterCode(email: string): Promise<Boolean> {
     const code = Math.floor(1000 + Math.random() * 9000);
     const authCode = new this.authCodeModel({ id: code, type: AuthCodeType.REGISTER, userEmail: email });
     
     await this.sendAuthCodeToEmail(email, code.toString());
-    return await authCode.save();
+    await authCode.save();
+    return true;
   };
 
   // 
