@@ -18,7 +18,7 @@ export class AuthCodeService {
   // createAuthCode
   async createAuthCode(user: User): Promise<Boolean> {
     const code = Math.floor(1000 + Math.random() * 9000);
-    const authCode = new this.authCodeModel({ id: code, type: AuthCodeType.AUTH, userId: user.id });
+    const authCode = new this.authCodeModel({ id: code, type: AuthCodeType.AUTH, userEmail: user.email });
     
     await this.sendAuthCodeToEmail(user.email, code.toString());
     await authCode.save();
