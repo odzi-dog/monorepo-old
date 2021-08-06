@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { AuthCode, AuthCodeDocument, User } from "src/types/models";
 import { AuthCodeType } from 'src/types/enums';
 import { MailService } from "src/modules/mail/services";
+import { AuthCodeTemplate } from "src/mail/templates";
 
 @Injectable()
 export class AuthCodeService {
@@ -42,6 +43,6 @@ export class AuthCodeService {
   // 
   // sendAuthCodeToEmail
   private async sendAuthCodeToEmail(email: string, code: string): Promise<any> {
-    return this.mailService.sendEmail({ to: email, subject: 'Auth code', text: `${code}`, html: 'Here is your auth code ' + code });
+    return this.mailService.sendEmail({ to: email, subject: `Код: ${code}`, text: `Код авторизации на сервисе auth.odzi.dog: ${code}`, html: new AuthCodeTemplate(code).html() });
   };
 };
