@@ -30,10 +30,10 @@ export class AuthService {
       if (user) {
         // Authorize user using this
         // auth code
-        return this._authorizeAccount(user, code);
+        return await this._authorizeAccount(user, code);
       } else {
         // Create new user using this auth code
-        return this._registerAccount(email, code)
+        return await this._registerAccount(email, code)
       };
     } else {
       throw new BadRequestException();
@@ -68,9 +68,9 @@ export class AuthService {
 
     // Returning user account
     if (code) {
-      return this._authorizeAccount(user, code);
+      return await this._authorizeAccount(user, code);
     } else {
-      return this.usersService.findUserAccount(null, email);
+      return await this.usersService.findUserAccount(null, email);
     };
   };
 };
