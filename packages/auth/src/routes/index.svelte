@@ -1,5 +1,9 @@
 <script lang="ts">
+  // Importing components
   import Icon from '../components/Icon.svelte';
+
+  // Importing modules
+  import { goto } from '$app/navigation';
 
   // Variables
   let email: string;
@@ -22,7 +26,7 @@
 
     <!-- Button -->
     <div class="w-full">
-      <button on:click="{() => { window.location.href = `/code/${email}` }}" class="w-full flex items-center justify-between px-4 py-2 bg-indigo-400">
+      <button on:click="{() => { goto(`/code/${email}`) }}" class="w-full flex items-center justify-between px-4 py-2 bg-indigo-400">
         <p class="text-sm mr-2 text-white">Продолжить</p>
 
         <Icon name="chevron-right" attrs={{ class:"w-4 h-4 text-white" }} />

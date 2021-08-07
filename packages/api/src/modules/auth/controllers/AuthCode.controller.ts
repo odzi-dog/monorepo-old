@@ -56,8 +56,6 @@ export class AuthCodeController {
     @Query('email') email: string, 
   ): Promise<AuthCode> {
     const authCode = await this.service.findAuthCode(code);
-    console.log("AUTHCODE:");
-    console.log(authCode);
 
     if (authCode && (authCode.userEmail === email)) {
       return authCode;
