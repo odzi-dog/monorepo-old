@@ -19,7 +19,7 @@ export class AuthService {
     private authCodeService: AuthCodeService,
   ) {}
 
-  async validateUser(email: string, code: number): Promise<{ user: User, token: AuthToken } | User> {
+  async validateUser(email: string, code: number): Promise<{ user: User, token: AuthToken }> {
     // Checking authCode
     const authCode = await this.authCodeService.findAuthCode(code);
 
@@ -62,15 +62,15 @@ export class AuthService {
 
   // 
   // registerAccount
-  private async _registerAccount(email: string, code?: number): Promise<{ user: User, token: AuthToken } | User> {
+  private async _registerAccount(email: string, code?: number): Promise<{ user: User, token: AuthToken }> {
     const account = new this.userModel({ email: email });
     const user = await account.save();
 
     // Returning user account
-    if (code) {
-      return await this._authorizeAccount(user, code);
-    } else {
-      return await this.usersService.findUserAccount(null, email);
-    };
+    // if (code) {
+    return await this._authorizeAccount(user, code);
+    // } else {
+    //   return await this.usersService.findUserAccount(null, email);
+    // };
   };
 };
