@@ -46,7 +46,7 @@
     loading = true;
 
     // Authorize user
-    fetch(`http://localhost:3000/auth/login`, {
+    fetch(`http://api.odzi.dog:3000/auth/login`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json;charset=utf-8'

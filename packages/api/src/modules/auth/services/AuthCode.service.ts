@@ -6,6 +6,9 @@ import { AuthCodeType } from 'src/types/enums';
 import { MailService } from "src/modules/mail/services";
 import { AuthCodeTemplate } from "src/mail/templates";
 
+import * as sgMail from '@sendgrid/mail';
+sgMail.setApiKey("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");
+
 @Injectable()
 export class AuthCodeService {
   constructor(
@@ -45,6 +48,13 @@ export class AuthCodeService {
   // 
   // sendAuthCodeToEmail
   private async sendAuthCodeToEmail(email: string, code: string): Promise<any> {
-    return this.mailService.sendEmail({ to: email, subject: `Код: ${code}`, text: `Код авторизации на сервисе auth.odzi.dog: ${code}`, html: new AuthCodeTemplate(code).html() });
+    sgMail
+    .send({
+      to: email,
+      from: 'auth@odzi.dog',
+      subject: `Код авторизации: ${code}`,
+      text: `Код авторизации на сервисе auth.odzi.dog: ${code}`,
+      html: new AuthCodeTemplate(code).html(),
+    });
   };
 };

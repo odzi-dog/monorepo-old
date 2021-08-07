@@ -14,6 +14,8 @@ export class MailService {
   });
 
   async sendEmail(options: { to: string, subject: string, text: string, html: string }): Promise<any> {
+    console.log("SEND EMAIL");
+    
     const mail = this.client.sendMail({
       from: '"odzi auth" <auth@odzi.dog>',
       ...options

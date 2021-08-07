@@ -30,6 +30,7 @@
     "@nestjs/passport": "^8.0.1",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/swagger": "^5.0.9",
+    "@sendgrid/mail": "^7.4.5",
     "@types/nodemailer": "^6.4.4",
     "apollo-server-express": "^2.25.2",
     "express-session": "^1.17.2",
