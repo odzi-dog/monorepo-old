@@ -4,8 +4,8 @@
   import { goto } from '$app/navigation';
 
   // Importing stores
-  import { UserStore } from '../stores/user/User.store';
-  import { CallbackStore } from '../stores/callback/Callback.store';
+  import { UserStore } from '../../stores/user/User.store';
+  import { CallbackStore } from '../../stores/callback/Callback.store';
 
   onMount(async () => {
     setTimeout(() => {
