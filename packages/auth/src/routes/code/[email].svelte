@@ -19,11 +19,12 @@
       loading = false;
       sendAgain = 60;
 
-      setInterval(() => {
+      const interval = setInterval(() => {
         --sendAgain;
         
         if (sendAgain <= 0) { 
           sendAgain = undefined;
+          clearInterval(interval);
         };
       }, 1000);
     });
@@ -68,8 +69,7 @@
   };
 
   onMount(() => {
-    // sendEmail();
-    loading = false;
+    sendEmail();
   });
 
   let sendAgain: number | undefined = undefined;
@@ -110,15 +110,14 @@
       </button>
 
       <!-- Send again -->
-      { #if !loading }
-        <p class="text-xs text-black opacity-60 mt-2">
-          { #if sendAgain === undefined }
-            <a href="/" on:click|preventDefault={() => sendEmail()}>Отправить код ещё раз.</a>
-          { :else }
-            Повторить отправку кода (Через { sendAgain } с.)
-          { /if }
-        </p>
-      { /if }
+      <!-- КОСТЫЛЬ -->
+      <p class="text-xs text-black opacity-60 mt-2 { loading ? "text-white" : "" }">
+        { #if sendAgain === undefined }
+          <a href="/" on:click|preventDefault={() => sendEmail()}>Отправить код ещё раз.</a>
+        { :else }
+          Повторить отправку кода (Через { sendAgain } с.)
+        { /if }
+      </p>
     </div>
   </div>
 </div>
