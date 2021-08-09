@@ -3,9 +3,17 @@ import { AppModule } from '../modules/main.module';
 import * as session from 'express-session';
 import * as passport from 'passport';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'; 
+import * as fs from 'fs';
 
 export default async function(): Promise<void> {
-  const app = await NestFactory.create(AppModule);
+  const httpsOptions = {
+    key: fs.readFileSync('./secrets/private-key.pem'),
+    cert: fs.readFileSync('./secrets/public-certificate.pem'),
+  };
+
+  const app = await NestFactory.create(AppModule, { 
+    httpsOptions: process.env.ENVIRONMENT == "PRODUCTION" ? httpsOptions : {}, 
+  });
   
   const config = new DocumentBuilder()
     .setTitle('Auth Odzi')
@@ -25,5 +33,5 @@ export default async function(): Promise<void> {
   app.use(passport.session());
 
   app.enableCors();
-  await app.listen(3000);
+  await app.listen(80);
 };
