@@ -16,7 +16,7 @@
     <!-- Button -->
     <div class="w-full mt-6">
       <button on:click="{() => {  
-        window.location.href = "http://api.odzi.dog:3000/api";
+        window.location.href = "https://api.odzi.dog:3000/api";
       }}" class="w-full flex items-center justify-between px-4 py-2 bg-indigo-400">
         <p class="text-sm mr-2 text-white">Перейти к API</p>
 

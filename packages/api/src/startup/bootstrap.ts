@@ -7,8 +7,8 @@ import * as fs from 'fs';
 
 export default async function(): Promise<void> {
   const httpsOptions = {
-    key: fs.readFileSync('../secrets/private-key.pem'),
-    cert: fs.readFileSync('../secrets/public-certificate.pem'),
+    key: fs.readFileSync('../secrets/server.key'),
+    cert: fs.readFileSync('../secrets/server.cert'),
   };
 
   const app = await NestFactory.create(AppModule, { 
@@ -33,5 +33,5 @@ export default async function(): Promise<void> {
   app.use(passport.session());
 
   app.enableCors();
-  await app.listen(80);
+  await app.listen(3000);
 };

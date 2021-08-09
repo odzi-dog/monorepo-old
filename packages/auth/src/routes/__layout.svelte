@@ -6,7 +6,7 @@
 <!-- Layout -->
 <main class="w-full h-screen bg-gray-200 flex items-center justify-center py-6 md:py-12 xl:py-24">
   <!-- Container -->
-  <div class="w-full md:w-1/2 xl:w-1/3 h-full flex flex-col bg-white rounded-xl">
+  <div class="w-full md:w-1/3 h-full flex flex-col bg-white rounded-xl">
     <!-- Header -->
     <div class="w-full py-6 flex items-center justify-center">
       <img class="w-10 h-10" src="/logotypes/odzi-dog-small-black.svg" alt="">
