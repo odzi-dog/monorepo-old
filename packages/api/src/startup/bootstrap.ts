@@ -7,8 +7,8 @@ import * as fs from 'fs';
 
 export default async function(): Promise<void> {
   const httpsOptions = {
-    key: fs.readFileSync('./secrets/private-key.pem'),
-    cert: fs.readFileSync('./secrets/public-certificate.pem'),
+    key: fs.readFileSync('../secrets/private-key.pem'),
+    cert: fs.readFileSync('../secrets/public-certificate.pem'),
   };
 
   const app = await NestFactory.create(AppModule, { 
