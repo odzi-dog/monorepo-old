@@ -78,7 +78,7 @@
 </script>
 
 <div class="w-full h-full flex items-center justify-center">
-  <div class="w-full xl:w-2/3">
+  <div class="w-full md:w-2/3">
     <div class="mb-2 flex justify-center">
       <!-- Illustration -->
       <img class="w-1/2" src="/icons/mailbox.png" alt="Mailbox Illustration">

@@ -28,7 +28,7 @@
 </script>
 
 <div class="h-full w-full flex flex-col items-center justify-center">
-  <div class="w-full xl:w-2/3">
+  <div class="w-full md:w-2/3">
     <!-- Texts -->
     <div class="text-center">
       <h1 class="text-2xl text-black">Авторизация</h1>
