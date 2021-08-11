@@ -6,13 +6,16 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as fs from 'fs';
 
 export default async function(): Promise<void> {
-  const httpsOptions = {
-    key: fs.readFileSync('../secrets/server.key'),
-    cert: fs.readFileSync('../secrets/server.cert'),
-  };
-
-  const app = await NestFactory.create(AppModule, { 
-    httpsOptions: process.env.ENVIRONMENT == "PRODUCTION" ? httpsOptions : {}, 
+  let httpsOptions;
+  try {
+    httpsOptions = {
+      key: fs.readFileSync('../secrets/server.key'),
+      cert: fs.readFileSync('../secrets/server.cert'),
+    };
+  } catch(error) {};
+ 
+  const app = await NestFactory.create(AppModule, {
+    httpsOptions: process.env.MODE === 'PRODUCTION' ? httpsOptions : null,
   });
   
   const config = new DocumentBuilder()
