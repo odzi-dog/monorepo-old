@@ -14,7 +14,7 @@
 </script>
 
 <!-- Layout -->
-<main class="w-full h-screen { $DesignStore?.custom?.backgroundColor || "bg-gray-200" } flex flex-col items-center justify-between py-6 md:py-16">
+<main style="background-color: { $DesignStore?.custom?.backgroundColor || "rgba(229, 231, 235);" }" class="w-full h-screen flex flex-col items-center justify-between py-6 md:py-16">
   <!-- Container -->
   <div class="w-full px-12 md:px-0 md:w-1/3 h-full flex flex-col bg-white rounded-xl">
     <!-- Header -->
