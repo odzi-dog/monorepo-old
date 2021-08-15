@@ -17,10 +17,8 @@ const store = () => {
 
     // setCallback
     setCallback(callback: Callback) {
-      console.log("UPDATE CALLBACK");
       update((object: Store): Store => {
         object.callback = callback;
-        console.log(object);
 
         return object;
       });
