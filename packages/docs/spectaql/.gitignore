@@ -1,0 +1,10 @@
+**/.DS_STORE
+**/.DS_Store
+~*
+*~
+*bak
+*cache
+*.log
+node_modules
+public
+scratch

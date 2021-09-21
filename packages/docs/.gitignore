@@ -1,10 +1,7 @@
-**/.DS_STORE
-**/.DS_Store
-~*
-*~
-*bak
-*cache
-*.log
+.DS_Store
 node_modules
-public
-scratch
+/build
+/.svelte-kit
+/package
+
+.vercel
