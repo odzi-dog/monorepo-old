@@ -1,5 +1,5 @@
 import preprocess from 'svelte-preprocess';
-import adapter from '../adapter/index.js';
+import adapter from '@sveltejs/adapter-vercel';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
