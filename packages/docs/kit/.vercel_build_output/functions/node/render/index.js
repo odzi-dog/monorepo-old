@@ -31,7 +31,7 @@ var __toModule = (module2) => {
   return __reExport(__markAsModule(__defProp(module2 != null ? __create(__getProtoOf(module2)) : {}, "default", module2 && module2.__esModule && "default" in module2 ? { get: () => module2.default, enumerable: true } : { value: module2, enumerable: true })), module2);
 };
 
-// ../adapter/node_modules/@sveltejs/kit/dist/install-fetch.js
+// node_modules/@sveltejs/kit/dist/install-fetch.js
 function dataUriToBuffer(uri) {
   if (!/^data:/i.test(uri)) {
     throw new TypeError('`uri` does not appear to be a Data URI (must begin with "data:")');
@@ -363,7 +363,7 @@ async function fetch(url, options_) {
 }
 var import_http, import_https, import_zlib, import_stream, import_util, import_crypto, import_url, src, dataUriToBuffer$1, Readable, wm, Blob, fetchBlob, Blob$1, FetchBaseError, FetchError, NAME, isURLSearchParameters, isBlob, isAbortSignal, carriage, dashes, carriageLength, getFooter, getBoundary, INTERNALS$2, Body, clone, extractContentType, getTotalBytes, writeToStream, validateHeaderName, validateHeaderValue, Headers, redirectStatus, isRedirect, INTERNALS$1, Response, getSearch, INTERNALS, isRequest, Request, getNodeRequestOptions, AbortError, supportedSchemas;
 var init_install_fetch = __esm({
-  "../adapter/node_modules/@sveltejs/kit/dist/install-fetch.js"() {
+  "node_modules/@sveltejs/kit/dist/install-fetch.js"() {
     init_shims();
     import_http = __toModule(require("http"));
     import_https = __toModule(require("https"));
@@ -1019,9 +1019,9 @@ var init_install_fetch = __esm({
   }
 });
 
-// ../adapter/files/shims.js
+// node_modules/@sveltejs/adapter-vercel/files/shims.js
 var init_shims = __esm({
-  "../adapter/files/shims.js"() {
+  "node_modules/@sveltejs/adapter-vercel/files/shims.js"() {
     init_install_fetch();
   }
 });
