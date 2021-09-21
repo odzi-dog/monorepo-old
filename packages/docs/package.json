@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd ./kit && npm ci && npm run build"
+    "pre-build": "cd adapter && npm ci && cd ../kit && npm ci",
+    "build": "npm run pre-build && cd ./kit && npm run build",
+    "generator:install": "cd generator && npm ci",
+    "generator:build": "node generator/build.js"
   },
   "keywords": [],
   "author": "",
