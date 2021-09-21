@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd ./kit && npm run build"
+    "build": "cd ./kit && npm ci && npm run build"
   },
   "keywords": [],
   "author": "",
