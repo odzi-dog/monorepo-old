@@ -1,0 +1,57 @@
+name: api production
+
+on: push
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.message, 'api:')"
+    steps:
+    - uses: actions/checkout@v2
+    - name: Clean artifact cache
+      uses: JimCronqvist/action-ssh@0.1.1
+      with:
+        hosts: 'ubuntu@140.238.219.21'
+        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+        command: |
+          rm -rf ./odzi-dog
+    - name: Deploy artifact to host
+      uses: wlixcc/SFTP-Deploy-Action@v1.2.1
+      with:
+        username: 'ubuntu'
+        server: '140.238.219.21'
+        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+        local_path: '.'
+        remote_path: '/home/ubuntu/odzi-dog/'
+        args: '-o ConnectTimeout=5'
+    - name: Install dependencies
+      uses: JimCronqvist/action-ssh@0.1.1
+      with:
+        hosts: 'ubuntu@140.238.219.21'
+        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+        command: |
+          cd ./odzi-dog
+          npm ci
+    - name: Bootstrap application
+      uses: JimCronqvist/action-ssh@0.1.1
+      with:
+        hosts: 'ubuntu@140.238.219.21'
+        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+        command: |
+          cd ./odzi-dog
+          npm run build
+    - name: Copy ecosystem.config.js into application's root directory
+      uses: JimCronqvist/action-ssh@0.1.1
+      with:
+        hosts: 'ubuntu@140.238.219.21'
+        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+        command: |
+          cp ./secrets/odzi-dog/ecosystem.config.js ./odzi-dog/packages/api/ecosystem.config.js
+    - name: Run builded api application in pm2 daemon
+      uses: JimCronqvist/action-ssh@0.1.1
+      with:
+        hosts: 'ubuntu@140.238.219.21'
+        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+        command: |
+          cd ./odzi-dog/packages/api
+          pm2 start ecosystem.config.js
