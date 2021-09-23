@@ -32,7 +32,7 @@ jobs:
         command: |
           cd ./odzi-dog
           npm ci
-          npm run 
+          npm run bootstrap
     - name: Bootstrap application
       uses: JimCronqvist/action-ssh@0.1.1
       with:
