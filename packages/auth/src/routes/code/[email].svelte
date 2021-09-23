@@ -14,7 +14,7 @@
   function sendEmail() {
     loading = true;
 
-    fetch(`https://api.odzi.dog:3000/auth/code?email=${$page.params['email']}`)
+    fetch(`https://api.odzi.dog/auth/code?email=${$page.params['email']}`)
     .then(() => {
       loading = false;
       sendAgain = 60;
@@ -32,7 +32,7 @@
 
   // checkCode
   function checkCode() {
-    fetch(`https://api.odzi.dog:3000/auth/code/${code}?email=${$page.params['email']}`)
+    fetch(`https://api.odzi.dog/auth/code/${code}?email=${$page.params['email']}`)
     .then((response) => response.json())
     .then((data) => {
       if (data.type != null && data.userEmail === $page.params['email']) {
@@ -47,7 +47,7 @@
     loading = true;
 
     // Authorize user
-    fetch(`https://api.odzi.dog:3000/auth/login`, {
+    fetch(`https://api.odzi.dog/auth/login`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
