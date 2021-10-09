@@ -1,7 +1,6 @@
 name: api.cloud.odzi.dog production
 
 on: push
-workflow_dispatch:
 
 jobs:
   api_pawcapsu:
