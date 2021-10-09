@@ -43,8 +43,8 @@ jobs:
         username: 'ubuntu'
         server: '140.238.219.21'
         ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-        local_path: './{{ $PATH_LOCAL }}/dist/*'
-        remote_path: '/home/ubuntu/{{ $PATH_REMOTE }}/'
+        local_path: './${{ $PATH_LOCAL }}/dist/*'
+        remote_path: '/home/ubuntu/${{ $PATH_REMOTE }}/'
         args: '-o ConnectTimeout=5'
     - name: Install dependencies on cloud server
       uses: JimCronqvist/action-ssh@0.1.1
