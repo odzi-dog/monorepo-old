@@ -1,6 +1,6 @@
 name: auth production
 
-on: push
+# on: push
 
 jobs:
   deploy:

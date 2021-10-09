@@ -1,6 +1,6 @@
 name: api production
 
-on: push
+# on: push
 
 jobs:
   deploy:
