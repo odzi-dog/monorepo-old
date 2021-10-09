@@ -36,7 +36,7 @@ jobs:
       run: |
         cp $PATH_LOCAL/package.json $PATH_LOCAL/dist
         cp $PATH_LOCAL/package-lock.json $PATH_LOCAL/dist
-        cp $PATH_LOCAL/apps/pawcapsu-api/ecosystem.config.js $PATH_LOCAL/dist
+        cp $PATH_LOCAL/ecosystem.config.js $PATH_LOCAL/dist
     - name: Push artifact code to cloud
       uses: wlixcc/SFTP-Deploy-Action@v1.2.1
       with:
