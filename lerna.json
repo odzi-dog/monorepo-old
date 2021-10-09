@@ -1,6 +1,8 @@
 {
   "packages": [
-    "packages/*"
+    "packages/*",
+    "frontend/*",
+    "backend/*"
   ],
   "version": "0.0.0"
 }
