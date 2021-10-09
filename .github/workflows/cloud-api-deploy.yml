@@ -3,7 +3,7 @@ name: api.cloud.odzi.dog production
 on: push
 
 jobs:
-  api_pawcapsu:
+  deploy:
     runs-on: ubuntu-latest
     env:
       PATH_LOCAL: "backend/cloud"
@@ -24,7 +24,7 @@ jobs:
     - name: Install dependencies
       run: npm ci
     - name: Bootstrap and Build application
-      run: npm run build:api/pawcapsu
+      run: npm run build:api/cloud
     - name: Prepare cloud instance for artifact upload
       uses: JimCronqvist/action-ssh@0.1.1
       with:
@@ -61,61 +61,4 @@ jobs:
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
         command: |
           cd $PATH_REMOTE
-          pm2 start ecosystem.config.js
-
-  notifier_deploy:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16]
-        npm-version: [7]
-    if: "contains(github.event.head_commit.message, 'api:')"
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use node@${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Use npm@${{ matrix.npm-version }}
-      run: npm install -g npm@${{ matrix.npm-version }}
-    - name: Install dependencies
-      run: npm ci
-    - name: Bootstrap and Build application
-      run: npm run build:api/notifier
-    - name: Prepare cloud instance for artifact upload
-      uses: JimCronqvist/action-ssh@0.1.1
-      with:
-        hosts: 'ubuntu@140.238.219.21'
-        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
-        command: |
-          rm -rf ./notifier
-    - name: Prepare artifact before cloud push
-      run: |
-        cp packages/api/package.json packages/api/dist
-        cp packages/api/package-lock.json packages/api/dist
-        cp packages/api/apps/notifier/ecosystem.config.js packages/api/dist
-    - name: Push artifact code to cloud
-      uses: wlixcc/SFTP-Deploy-Action@v1.2.1
-      with:
-        username: 'ubuntu'
-        server: '140.238.219.21'
-        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-        local_path: './packages/api/dist/*'
-        remote_path: '/home/ubuntu/notifier/'
-        args: '-o ConnectTimeout=5'
-    - name: Install dependencies on cloud server
-      uses: JimCronqvist/action-ssh@0.1.1
-      with:
-        hosts: 'ubuntu@140.238.219.21'
-        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
-        command: |
-          cd ./notifier
-          npm ci
-    - name: Start application in pm2 daemon
-      uses: JimCronqvist/action-ssh@0.1.1
-      with:
-        hosts: 'ubuntu@140.238.219.21'
-        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
-        command: |
-          cd ./notifier
           pm2 start ecosystem.config.js

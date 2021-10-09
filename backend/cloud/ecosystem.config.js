@@ -1,6 +1,6 @@
 module.exports = {
   apps: [{
-    name: "ctrlpaint-api",
+    name: "odzi-cloud-api",
     script: "./dist/main.js",
     env: {
       MODE: "PRODUCTION",

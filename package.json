@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna clean -y && lerna bootstrap",
-    "build": "npm run bootstrap && lerna run build"
+    "build": "npm run bootstrap && lerna run build",
+    "build:api/cloud": "npm run bootstrap && lerna run build --scope @odzi-cloud/api"
   },
   "devDependencies": {
     "lerna": "^4.0.0"
