@@ -1,6 +1,6 @@
 name: hosting plane production
 
-# on: push
+on: push
 
 jobs:
   deploy:

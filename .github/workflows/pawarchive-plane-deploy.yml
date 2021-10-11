@@ -1,6 +1,6 @@
 name: landing production
 
-# on: push
+on: push
 
 jobs:
   deploy:
