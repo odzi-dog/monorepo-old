@@ -15,12 +15,12 @@ export default async function(): Promise<void> {
   );
   
   const config = new DocumentBuilder()
-    .setTitle('ctrlpaint.ru')
-    .setDescription('api.ctrlpaint.ru documentation')
+    .setTitle('cloud.odzi.dog')
+    .setDescription('api.cloud.odzi.dog documentation')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('documentation', app, document);
 
-  await app.listen(process.env.MODE === "PRODUCTION" ? 4000 : 3001);
+  await app.listen(process.env.MODE === "PRODUCTION" ? 80 : 3001);
 };

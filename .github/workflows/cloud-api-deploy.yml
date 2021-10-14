@@ -5,14 +5,11 @@ on: push
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      PATH_LOCAL: "backend/cloud"
-      PATH_REMOTE: "cloud/api"
     strategy:
       matrix:
         node-version: [16]
         npm-version: [7]
-    if: "contains(github.event.head_commit.message, 'api/cloud:')"
+    if: "contains(github.event.head_commit.message, 'api:')"
     steps:
     - uses: actions/checkout@v2
     - name: Use node@${{ matrix.node-version }}
@@ -24,41 +21,20 @@ jobs:
     - name: Install dependencies
       run: npm ci
     - name: Bootstrap and Build application
-      run: npm run build:api/cloud
-    - name: Prepare cloud instance for artifact upload
-      uses: JimCronqvist/action-ssh@0.1.1
-      with:
-        hosts: 'ubuntu@140.238.219.21'
-        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
-        command: |
-          rm -rf $PATH_REMOTE
+      run: npm run build:cloud/api
     - name: Prepare artifact before cloud push
       run: |
-        cp $PATH_LOCAL/package.json $PATH_LOCAL/dist
-        cp $PATH_LOCAL/package-lock.json $PATH_LOCAL/dist
-        cp $PATH_LOCAL/ecosystem.config.js $PATH_LOCAL/dist
-    - name: Push artifact code to cloud
-      uses: wlixcc/SFTP-Deploy-Action@v1.2.1
+        cp backend/cloud/package.json backend/cloud/dist
+        cp backend/cloud/captain-definition backend/cloud/dist
+    - name: Install CapRover
+      run: npm install -g caprover
+    - name: Zip aftifact into .tar file
+      uses: thedoctor0/zip-release@master
       with:
-        username: 'ubuntu'
-        server: '140.238.219.21'
-        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-        local_path: './backend/cloud/dist/*'
-        remote_path: '/home/ubuntu/cloud/api/'
-        args: '-o ConnectTimeout=5'
-    - name: Install dependencies on cloud server
-      uses: JimCronqvist/action-ssh@0.1.1
-      with:
-        hosts: 'ubuntu@140.238.219.21'
-        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
-        command: |
-          cd $PATH_REMOTE
-          npm ci
-    - name: Start application in pm2 daemon
-      uses: JimCronqvist/action-ssh@0.1.1
-      with:
-        hosts: 'ubuntu@140.238.219.21'
-        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
-        command: |
-          cd $PATH_REMOTE
-          pm2 start ecosystem.config.js
+        type: 'tar'
+        filename: '../output.tar'
+        directory: 'backend/cloud/dist/'
+    - name: Push artifact to private Odzi Platform instance
+      run: |
+        cd backend/cloud
+        caprover deploy -h https://captain.app.odzi.dog -p ${{ secrets.CAPROVER_PASSWORD }} --tarFile=output.tar -a odzi-cloud-api

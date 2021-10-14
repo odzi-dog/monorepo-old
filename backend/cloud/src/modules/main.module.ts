@@ -15,7 +15,7 @@ import * as ModuleList from '../startup/imports';
       autoSchemaFile: 'schema.gql',
       context: ({ req }) => ({ req }),
       cors: {
-        origin: process.env.MODE === 'PRODUCTION' ? 'https://www.ctrlpaint.ru' : 'http://localhost:3000',
+        origin: process.env.MODE === 'PRODUCTION' ? 'https://cloud.odzi.dog' : 'http://localhost:3000',
         credentials: true,
       },
     }),
