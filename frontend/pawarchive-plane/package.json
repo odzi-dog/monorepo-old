@@ -1,5 +1,5 @@
 {
-	"name": "company",
+	"name": "@odzi-cloud/pawarchive-plane",
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "svelte-kit dev",

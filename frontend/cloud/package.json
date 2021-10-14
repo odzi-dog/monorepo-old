@@ -1,5 +1,5 @@
 {
-	"name": "@ctrlpaint-ru/web",
+	"name": "@odzi-cloud/landing",
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "svelte-kit dev",
