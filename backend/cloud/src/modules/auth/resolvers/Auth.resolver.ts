@@ -1,25 +1,28 @@
-import { Resolver, Mutation, Parent, Args, Context } from '@nestjs/graphql'
-import { Profile } from 'src/types/models';
-import { IRequest } from 'src/auth/guards';
-import { AuthService } from 'src/modules/auth/services';
+import { Resolver, Mutation, Args } from '@nestjs/graphql'
+import { AuthRequestService } from 'src/modules/auth/services';
+import { Profile, AuthRequest } from 'src/types/models';
+import { AuthResponse } from 'src/types/objects';
 
 @Resolver(of => Profile)
 export class AuthResolver {
   constructor(
-    private readonly service: AuthService,
+    private readonly authRequest: AuthRequestService,
   ) {}
 
-  @Mutation(returns => Profile)
-  async login(
-    @Args('token') token: string,
-    @Context('req') req: IRequest,
-  ) {
-    const profile = await this.service.authorizeUser(token);
-
-    if (profile != undefined) {
-      req.session.uid = profile._id;
-      return profile;
-    };
+  // RequestAuth mutation
+  @Mutation(returns => AuthRequest)
+  public async RequestAuth(
+    @Args('email') email: string,
+  ): Promise<AuthRequest> {
+    return await this.authRequest.request(email);
   };
 
+  // ProcessAuthentication mutation
+  @Mutation(returns => AuthResponse)
+  public async ProcessAuthentication(
+    @Args('email') email: string,
+    @Args('code') code: string,
+  ): Promise<AuthResponse> {
+    return await this.authRequest.process(email, code);
+  };
 };

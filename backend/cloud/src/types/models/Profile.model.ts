@@ -6,12 +6,6 @@ import { ObjectId } from 'src/types';
 
 export type ProfileDocument = Profile & Document;
 
-@ObjectType()
-export class Token {
-  @Field()
-  id: string
-};
-
 @Schema()
 @ObjectType()
 export class Profile implements IProfile {

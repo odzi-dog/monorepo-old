@@ -6,10 +6,13 @@ import { ConfigModule } from '@nestjs/config';
 // Importing modules
 import * as ModuleList from '../startup/imports';
 
+// Importing enums
+import 'src/types/enums';
+
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRoot('mongodb+srv://paws:kxz2zyGxIO28JaCR@cluster0.03jyp.mongodb.net/production?retryWrites=true&w=majority'),
+    MongooseModule.forRoot(process.env.MONGO_URL),
 
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',

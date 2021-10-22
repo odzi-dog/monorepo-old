@@ -1,0 +1,57 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Profile {
+  _id: String!
+  email: String!
+  username: String
+}
+
+type Token {
+  secret: String!
+  permissions: TokenPermissions!
+}
+
+type AuthResponse {
+  user: Profile!
+  token: Token!
+}
+
+type TokenPermission {
+  type: ETokenPermissionType!
+}
+
+enum ETokenPermissionType {
+  USER_TOKEN
+  REPLICATE_TOKEN
+  GET_USER_INFO
+}
+
+type TokenPermissions {
+  version: String!
+  list: [TokenPermission!]!
+}
+
+type AuthRequest {
+  email: String
+}
+
+type Query {
+  me: Profile!
+  profile(uid: String!): Profile!
+}
+
+type Mutation {
+  RequestAuth(email: String!): AuthRequest!
+  ProcessAuthentication(code: String!, email: String!): AuthResponse!
+  ReplicateToken(permissions: TokenPermissionsInput): Token!
+}
+
+input TokenPermissionsInput {
+  list: [TokenPermissionInput!]!
+}
+
+input TokenPermissionInput {
+  type: ETokenPermissionType!
+}
