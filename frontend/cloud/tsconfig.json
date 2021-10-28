@@ -28,10 +28,10 @@
 			"$services/*": ["src/services/*"],
 			"$config/*": ["src/config/*"],
 			"@app/shared": [
-        "../api/libs/shared/src"
+        "../../backend/cloud/libs/shared/src"
       ],
       "@app/shared/*": [
-        "../api/libs/shared/src/*"
+        "../../backend/cloud/libs/shared/src"
       ]
 		}
 	},

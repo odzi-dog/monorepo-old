@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ModelsImports } from 'src/startup/models';
 
-import * as Services from './services';
+import { Services } from 'src/startup/services';
 import * as Resolvers from './resolvers';
 
 @Module({

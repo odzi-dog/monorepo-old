@@ -2,7 +2,7 @@ import { Resolver, Query, Args, Context } from '@nestjs/graphql';
 import { ProfilesService } from 'src/modules/profiles/services';
 import { Profile } from 'src/types/models';
 import { UseGuards } from '@nestjs/common';
-import { GqlAuthGuard } from 'src/auth/guards';
+import { UserAuthGuard } from 'src/auth/guards';
 
 @Resolver(of => Profile)
 export class ProfilesResolver{
@@ -10,7 +10,7 @@ export class ProfilesResolver{
     private service: ProfilesService,
   ) {}
 
-  @UseGuards(GqlAuthGuard)
+  @UseGuards(UserAuthGuard)
   @Query(returns => Profile)
   async me(@Context('user') user: Profile) {
     return user;

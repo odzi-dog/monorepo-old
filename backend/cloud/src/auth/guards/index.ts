@@ -1,2 +1,2 @@
-export * from './GqlAuth.guard';
+export * from './UserAuth.guard';
 export * from './ApiAuth.guard';

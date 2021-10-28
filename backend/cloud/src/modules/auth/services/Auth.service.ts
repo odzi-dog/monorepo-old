@@ -3,10 +3,12 @@ import { ITokenContext, ETokenType, ETokenPermissionType, ITokenPermission } fro
 import { ProfilesService } from 'src/modules/profiles/services';
 import { TokenService } from 'src/modules/token/services';
 import { PermissionsService } from 'src/modules/permissions/services';
+import { Profile } from 'src/types/models';
 
 @Injectable()
 export class AuthService {
   constructor(
+    private readonly profilesService: ProfilesService,
     private readonly permissionsService: PermissionsService,
     private readonly tokenService: TokenService,
   ) {}
@@ -23,6 +25,7 @@ export class AuthService {
       const secret = token.secret;
       const namespaces = [];
       const permissions = (await this.permissionsService.fetchPermissions(token.secret));
+      const profile: Profile | null = token.profile ? await this.profilesService.findProfile(token.profile) : null;
 
       // Checking token type
       if (permissions.list.find((x) => x.type === ETokenPermissionType.USER_TOKEN)) {
@@ -45,6 +48,7 @@ export class AuthService {
       return <ITokenContext>{
         secret,
         namespaces,
+        profile,
         permissions,
       };
     } else {

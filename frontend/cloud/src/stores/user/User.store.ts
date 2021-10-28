@@ -2,7 +2,7 @@
 import { writable } from "svelte/store";
 import { client } from '$services/graphql';
 import { gql } from '@apollo/client/core/core.cjs.js';
-import type { IProfile } from '$shared/interfaces';
+import type { IProfile } from '@app/shared';
 
 export interface Store {
   // User information

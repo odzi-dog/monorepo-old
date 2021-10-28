@@ -55,10 +55,11 @@ export class AuthRequestService {
       };
 
       // Creting new user token
-      const token = await this.tokenService.createUserToken([
+      const token = await this.tokenService.createUserToken(
+        profile._id,
         // Permissions Array
         // todo: move this to tokenService?
-        {
+        [{
           type: ETokenPermissionType.USER_TOKEN,
         },
       ]);
@@ -66,8 +67,6 @@ export class AuthRequestService {
       // Returning AuthResponse
       const response: AuthResponse = {
         user: profile,
-        // We need to manually fetch permissions
-        // due to graphql???
         token: token,
       };
 

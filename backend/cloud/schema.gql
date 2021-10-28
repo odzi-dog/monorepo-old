@@ -10,6 +10,7 @@ type Profile {
 
 type Token {
   secret: String!
+  profile: Profile!
   permissions: TokenPermissions!
 }
 
@@ -26,11 +27,48 @@ enum ETokenPermissionType {
   USER_TOKEN
   REPLICATE_TOKEN
   GET_USER_INFO
+  NAMESPACE_ADMIN
+  CREATE_NAMESPACE
+  CREATE_RESOURCE
+}
+
+type AuthResourceObject {
+  _id: String!
+  config: AuthResourceConfigObject!
+}
+
+type AuthResourceConfigObject {
+  callback: AuthResourceCallbackObject!
+  design: AuthResourceDesignObject!
+}
+
+type AuthResourceCallbackObject {
+  url: String!
+}
+
+type AuthResourceDesignObject {
+  logotype: String
+  backroundColor: String
+  containerColor: String
+  headerText: String
+  descriptionText: String
+  footerText: String
+}
+
+type NamespaceMemberObject {
+  profile: Profile!
+  permissions: TokenPermissions!
 }
 
 type TokenPermissions {
   version: String!
   list: [TokenPermission!]!
+}
+
+type Namespace {
+  _id: String!
+  slug: String!
+  members: [NamespaceMemberObject!]!
 }
 
 type AuthRequest {
@@ -40,12 +78,16 @@ type AuthRequest {
 type Query {
   me: Profile!
   profile(uid: String!): Profile!
+  fetchToken(secret: String): Token!
+  getAuthResource(id: String!): AuthResourceObject!
 }
 
 type Mutation {
   RequestAuth(email: String!): AuthRequest!
   ProcessAuthentication(code: String!, email: String!): AuthResponse!
+  CreateNamespace(slug: String!): Namespace!
   ReplicateToken(permissions: TokenPermissionsInput): Token!
+  CreateAuthResource(config: AuthResourceInput!, namespace: String!): AuthResourceObject!
 }
 
 input TokenPermissionsInput {
@@ -54,4 +96,22 @@ input TokenPermissionsInput {
 
 input TokenPermissionInput {
   type: ETokenPermissionType!
+}
+
+input AuthResourceInput {
+  callback: AuthResourceCallbackInput!
+  design: AuthResourceDesignInput
+}
+
+input AuthResourceCallbackInput {
+  url: String!
+}
+
+input AuthResourceDesignInput {
+  logotype: String
+  backroundColor: String
+  containerColor: String
+  headerText: String
+  descriptionText: String
+  footerText: String
 }

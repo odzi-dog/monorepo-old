@@ -3,6 +3,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Token, TokenDocument, TokenPermissionsDocument, TokenPermissions } from "src/types/models";
 import { ETokenType, ITokenPermission } from "@app/shared";
 import { Model } from "mongoose";
+import { ObjectId } from "src/types";
 
 @Injectable()
 export class TokenService {
@@ -15,13 +16,14 @@ export class TokenService {
   ) {}
 
   // public createUserToken
-  public async createUserToken(permissions?: Array<ITokenPermission>) {
+  public async createUserToken(profileId: ObjectId, permissions?: Array<ITokenPermission>) {
     // Creating permissions instance
     const permissionsInstance = await (new this.TokenPermissions({ version: 0, list: [...permissions] })).save();
 
     // Creating token instance
     const tokenInstance = new this.Token({
       type: ETokenType.USER,
+      profile: profileId,
       secret: this._randomIdentifier(16),
       permissions: permissionsInstance._id,
     });

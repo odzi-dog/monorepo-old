@@ -21,5 +21,9 @@ export const ModelsImports = MongooseModule.forFeature([
   {
     name: 'AuthRequest',
     schema: models.AuthRequestSchema,
+  },
+  {
+    name: 'Resource',
+    schema: models.ResourceSchema
   }
 ]);

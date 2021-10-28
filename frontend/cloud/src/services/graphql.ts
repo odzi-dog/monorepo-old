@@ -5,7 +5,7 @@ import { Config } from '$config/index';
 
 // export { gql } from '@apollo/client/core/core.cjs.js';
 export const client = SvelteApolloClient({
-  uri: `${ Config.get('MODE') === 'DEVELOPMENT' ? 'http://localhost:3001' : 'https://api.ctrlpaint.ru' }/graphql`,
+  uri: `${ Config.get('MODE') === 'DEVELOPMENT' ? 'http://localhost:3001' : 'https://api.cloud.odzi.dog' }/graphql`,
   credentials: 'include',
   cache: new InMemoryCache(),
 });

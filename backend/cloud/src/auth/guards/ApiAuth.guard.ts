@@ -18,15 +18,12 @@ export class ApiAuthGuard implements CanActivate {
     const { req } = ctx;
 
     ctx.token = await this.validateToken(req);
-    if (ctx.token === null) {
-      throw new HttpException('Invalid token', HttpStatus.UNAUTHORIZED);
-    };
     return true;
   };
 
   async validateToken(req: Request): Promise<ITokenContext | null> {
     // Authorizing
-    const secret = req.headers.authorization.replace('Bearer ', '');
+    const secret = req?.headers?.authorization?.replace('Bearer ', '');
     const context = await this.authService.authorizeToken(secret);
     return context;
   };
