@@ -1,4 +1,4 @@
-import { IProfile, ITokenPermissions, TRelationalProp } from '@app/shared';
+import { IProfile, ITokenPermissions } from '../';
 
 // Exporting ITokenContext interface
 export interface ITokenContext {

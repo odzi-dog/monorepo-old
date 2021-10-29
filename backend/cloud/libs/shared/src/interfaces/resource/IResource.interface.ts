@@ -1,5 +1,5 @@
 // Importing interfaces
-import { EResourceType, INamespace, TRelationalProp } from '@app/shared';
+import { EResourceType, INamespace, TRelationalProp } from '../../';
 import { IResourceMember } from '.';
 
 // Exporting IResource interface

@@ -1,4 +1,4 @@
-import { IProfile, IToken } from '@app/shared';
+import { IProfile, IToken } from '../../';
 
 // Exporting IAuthResponse interface
 export interface IAuthResponse {

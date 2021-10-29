@@ -1,5 +1,5 @@
 // Importing
-import { ETokenType, TRelationalProp } from "@app/shared";
+import { ETokenType, TRelationalProp } from "../../";
 import { ITokenPermissions } from "./permissions";
 import { INamespace } from "../namespace";
 

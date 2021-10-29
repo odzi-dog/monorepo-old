@@ -3,8 +3,9 @@ export interface IAuthResourceDesign {
   logotype?: string;
   
   // Colors
-  backroundColor?: string;
+  backgroundColor?: string;
   containerColor?: string;
+  accentColor?: string;
 
   // Texts
   headerText?: string;

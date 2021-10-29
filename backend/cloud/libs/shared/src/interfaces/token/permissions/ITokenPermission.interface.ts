@@ -1,5 +1,5 @@
 // Importing
-import { ETokenPermissionType } from "@app/shared";
+import { ETokenPermissionType } from "../../../";
 
 // Exporting ITokenPermission interface
 export interface ITokenPermission {

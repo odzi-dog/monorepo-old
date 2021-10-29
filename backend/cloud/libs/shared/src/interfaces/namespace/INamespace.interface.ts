@@ -1,4 +1,4 @@
-import { INamespaceMember, IResource, TRelationalProp, TResourceConfig } from "@app/shared";
+import { INamespaceMember, IResource, TRelationalProp, TResourceConfig } from '../../';
 
 // Exporting INamespace interface
 export interface INamespace {

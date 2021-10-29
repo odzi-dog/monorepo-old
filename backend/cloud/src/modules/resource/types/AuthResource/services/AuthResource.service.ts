@@ -26,7 +26,10 @@ export class AuthResourceService {
     // "Translating" this resource into AuthResourceObject
     const authResource: AuthResourceObject = {
       _id: id,
-      config: resource.config,
+      config: {
+        callback: resource.config.callback,
+        design: resource.config.design ?? {}
+      },
       members: resource.members,
       namespace
     };

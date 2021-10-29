@@ -48,8 +48,9 @@ type AuthResourceCallbackObject {
 
 type AuthResourceDesignObject {
   logotype: String
-  backroundColor: String
+  backgroundColor: String
   containerColor: String
+  accentColor: String
   headerText: String
   descriptionText: String
   footerText: String

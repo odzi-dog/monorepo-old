@@ -28,10 +28,13 @@ class AuthResourceDesignObject implements IAuthResourceDesign {
 
   // Colors
   @Field({ nullable: true })
-  backroundColor?: string
+  backgroundColor?: string
 
   @Field({ nullable: true })
   containerColor?: string;
+
+  @Field({ nullable: true })
+  accentColor?: string;
 
   // Texts
   @Field({ nullable: true })

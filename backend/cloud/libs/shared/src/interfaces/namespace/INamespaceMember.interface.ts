@@ -1,4 +1,4 @@
-import { TRelationalProp, ITokenPermissions } from "@app/shared";
+import { TRelationalProp, ITokenPermissions } from '../../';
 
 // Exporting INamespaceMember interface
 export interface INamespaceMember {

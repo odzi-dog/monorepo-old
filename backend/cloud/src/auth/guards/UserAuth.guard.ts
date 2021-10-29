@@ -37,7 +37,7 @@ export class UserAuthGuard implements CanActivate {
 
   async validateRobotToken(req: IRequest) {
     // Authorizing
-    const secret = req.headers.authorization.replace('Bearer ', '');
+    const secret = req?.headers?.authorization?.replace('Bearer ', '');
     const context = await this.authService.authorizeToken(secret);
     return context;
   };
