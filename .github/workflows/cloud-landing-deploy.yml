@@ -22,3 +22,4 @@ jobs:
         vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_CLOUD_LANDING }}
         vercel-args: '--prod'
         working-directory: ./frontend/cloud
+        
