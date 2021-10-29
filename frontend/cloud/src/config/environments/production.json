@@ -1,3 +1,4 @@
 {
-  "MODE": "PRODUCTION"
+  "MODE": "PRODUCTION",
+  "GRAPHQL_URL": "https://api.cloud.odzi.dog/graphql"
 }
