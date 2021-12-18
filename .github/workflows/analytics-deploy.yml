@@ -24,9 +24,9 @@ jobs:
       uses: thedoctor0/zip-release@master
       with:
         type: 'tar'
-        filename: 'output.tar'
+        filename: '../output.tar'
         directory: 'backend/analytics/'
     - name: Push artifact to private Odzi Platform instance
       run: |
-        cd backend/analytics
+        cd backend
         caprover deploy -h https://captain.app.odzi.dog -p ${{ secrets.CAPROVER_PASSWORD }} --tarFile=output.tar -a odzi-dog-analytics
