@@ -1,11 +1,11 @@
-name: hosting plane production
+name: odzi.dog production
 
 on: push
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: "contains(github.event.head_commit.message, 'plane/hosting:')"
+    if: "contains(github.event.head_commit.message, 'web/landing:')"
     steps:
     - uses: actions/checkout@v2
     - name: Deploy application to Vercel
@@ -13,6 +13,7 @@ jobs:
       with:
         vercel-token: ${{ secrets.VERCEL_TOKEN }}
         vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_PLANE_HOSTING }}
+        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_LANDING }}
         vercel-args: '--prod'
-        working-directory: ./frontend/hosting-plane
+        working-directory: ./frontend/landing
+        
